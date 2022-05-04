@@ -1,0 +1,40 @@
+<odoo>
+    <record id="student_account_view" model="ir.ui.view">
+        <field name="name">student_account.student_account_view</field>
+        <field name="model">student.account</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <h1>Student Account</h1>
+                </header>
+                <sheet>
+                    <group>
+
+                        <field name="name"/>
+                    <!--                <field name="student_id"/>-->
+                        <field name="email"/>
+                        <field name="phone"/>
+                        <field name="address"/>
+                        <field name="city"/>
+                        <field name="state"/>
+                        <field name="zip"/>
+                        <field name="country"/>
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+
+    </record>
+    <record id="student_account_menu" model="ir.actions.act_window">
+        <field name="name">Student Account</field>
+        <field name="res_model">student.account</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+    <menuitem name="Student Account Menu"
+              id="student_account_view_menu"
+              action="student_account_menu"/>
+
+
+</odoo>
