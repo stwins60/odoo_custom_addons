@@ -1,31 +1,92 @@
 <odoo>
     <record id="student_account_view" model="ir.ui.view">
-        <field name="name">student_account.student_account_view</field>
+        <field name="name">Student Account Information</field>
         <field name="model">student.account</field>
         <field name="arch" type="xml">
-            <form>
+
+            <form style="background-color:blue;">
                 <header>
                     <h1>Student Account</h1>
                 </header>
+                <header>
+                    <button type="object" class="btn btn-primary"
+                            name="action_activate_student_account"
+                            string="Activate"
+                            />
+                    <button type="object" class="btn btn-primary"
+                            name="action_deactivate_student_account"
+                            string="Deactivate"
+                            />
+<!--                    <button type="object" class="btn btn-primary"-->
+<!--                            name="action_create_invoice"-->
+<!--                            string="Create Invoice"-->
+<!--                            />-->
+                </header>
                 <sheet>
-                    <group>
-
-                        <field name="name"/>
-                    <!--                <field name="student_id"/>-->
-                        <field name="email"/>
-                        <field name="phone"/>
-                        <field name="address"/>
-                        <field name="city"/>
-                        <field name="state"/>
-                        <field name="zip"/>
-                        <field name="country"/>
+                    <group name="group_right">
+                        <field name="account_number"/>
+                        <field name="account_type"/>
+                        <field name="balance"/>
+                    </group>
+                    <group name="group_left">
+                        <field name="status"/>
+                        <field name="date_created"/>
+                    </group>
+                    <group name="group_bottom">
+                            <notebook>
+                                <page string="Student">
+                                    <field name="student_info"/>
+<!--                                    <field name="department" string="Department"/>-->
+<!--                                    <field name="email" string="Email"/>-->
+<!--                                    <field name="phone" string="Phone"/>-->
+<!--                                    <field name="address" string="Address"/>-->
+<!--                                    <field name="city" string="City"/>-->
+<!--                                    <field name="state" string="State"/>-->
+<!--                                    <field name="zip" string="Zip"/>-->
+<!--                                    <field name="country" string="Country"/>-->
+                                </page>
+                            </notebook>
                     </group>
                 </sheet>
+
             </form>
 
         </field>
 
     </record>
+    <record id="student_account_tree_view" model="ir.ui.view">
+        <field name="name">Student Account Tree View</field>
+        <field name="model">student.account</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="student_info"/>
+                <field name="account_number"/>
+                <field name="account_type"/>
+                <field name="balance"/>
+                <field name="status"/>
+                <field name="date_created"/>
+            </tree>
+
+        </field>
+    </record>
+    <record id="student_account_search_view" model="ir.ui.view">
+        <field name="name">Student Account Search View</field>
+        <field name="model">student.account</field>
+        <field name="arch" type="xml">
+            <search string="Search">
+                        <field name="status"/>
+                        <field name="date_created"/>
+                        <filter name="status" domain="[('status', '=', 'active')]" />
+                        <filter name="status" domain="[('status', '=', 'inactive')]" />
+                        <group expand ="1" string="Group By">
+                            <filter name="Account Type" context="{'group_by': 'account_type'}" />
+                        </group>
+            </search>
+        </field>
+    </record>
+
+
+
     <record id="student_account_menu" model="ir.actions.act_window">
         <field name="name">Student Account</field>
         <field name="res_model">student.account</field>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="student_info" model="ir.ui.view">
+        <field name="name">student_info</field>
+        <field name="model">student.info</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="School Information">
+                <field name="name" />
+            </form>
+        </field>
+    </record>
+
+</odoo>
